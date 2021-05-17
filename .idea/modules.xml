@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/fullstack/demo.iml" filepath="$PROJECT_DIR$/fullstack/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fullstack/BackEnd.iml" filepath="$PROJECT_DIR$/fullstack/BackEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/luxsonic.iml" filepath="$PROJECT_DIR$/luxsonic.iml" />
     </modules>
   </component>
