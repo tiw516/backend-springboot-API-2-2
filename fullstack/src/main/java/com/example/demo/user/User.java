@@ -15,6 +15,7 @@ public class User {
     private String telephone;
     private String email;
     private String job;
+    private String password;
 
     public Integer getUid() {
         return uid;
@@ -51,6 +52,12 @@ public class User {
     }
     public void setJob(String job) {
         this.job = job;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public String getPassword(){
+        return password;
     }
     public User(){
     }
