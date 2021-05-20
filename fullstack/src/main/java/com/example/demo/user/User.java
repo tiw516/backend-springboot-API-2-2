@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin
 @Entity
@@ -62,6 +65,39 @@ public class User {
     public String getPassword(){
         return password;
     }
+/*
+    public static final String CSV_SEPARATOR = ",";
+    public static void writeToCSV(List<User> users)
+    {
+        try
+        {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("userlist.csv"), "UTF-8"));
+            for (User user : users)
+            {
+                StringBuffer oneLine = new StringBuffer();
+                oneLine.append(user.getUid() <=0 ? "" : user.getUid());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(user.getName() == null? "" : user.getName());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(user.getEmail() == null ? "" : user.getEmail());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(user.getTelephone() == null ? "" : user.getTelephone());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(user.getJob() == null ? "" : user.getJob());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(user.getAge() == null ? "" : user.getTelephone());
+                oneLine.append(CSV_SEPARATOR);
+                bw.write(oneLine.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (UnsupportedEncodingException e) {}
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
+    }
+*/
     public User(){
     }
 }
