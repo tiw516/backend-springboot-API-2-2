@@ -22,6 +22,7 @@ public class User {
     private String email;
     private String job;
     private String password;
+    private String time;
 
     public Integer getUid() {
         return uid;
@@ -64,6 +65,12 @@ public class User {
     }
     public String getPassword(){
         return password;
+    }
+    public String getTime(){
+        return time;
+    }
+    public void setTime(String time){
+        this.time = time;
     }
 /*
     public static final String CSV_SEPARATOR = ",";

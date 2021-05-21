@@ -11,9 +11,11 @@ import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.Date;
 
 
 @RestController
@@ -30,49 +32,8 @@ public class UserController {
     public List<User> getList() {
         return userRepository.findAll();
     }
-/*
-    @GetMapping("/downloadlist")
-    public void listDownload() throws IOException {
-        List<User> users = userRepository.findAll();
-        ICsvBeanWriter beanWriter = null;
-        String csvFileDirectory = System.getProperty("user.home") + "/Desktop";
 
-        CellProcessor[] processors = new CellProcessor[] {
-                new NotNull(), // ISBN
-                new NotNull(), // title
-                new NotNull(), // author
-                new NotNull(), // publisher
-                new NotNull(),
-                new NotNull(),
-                new NotNull()// price
-        };
-
-        try {
-            beanWriter = new CsvBeanWriter(new FileWriter(csvFileDirectory),
-                    CsvPreference.STANDARD_PREFERENCE);
-            String[] header = {"uid", "name", "age", "telephone", "email", "job", "password"};
-            beanWriter.writeHeader(header);
-
-
-            for (User user : users) {
-                beanWriter.write(user, header, processors);
-            }
-
-        } catch (IOException ex) {
-            System.err.println("Error writing the CSV file: " + ex);
-        } finally {
-            if (beanWriter != null) {
-                try {
-                    beanWriter.close();
-                } catch (IOException ex) {
-                    System.err.println("Error closing the writer: " + ex);
-                }
-            }
-        }
-    }
-    */
-
-    @RequestMapping(value = "/downloadCSV")
+    @RequestMapping(value = "/downloadCSV", method = RequestMethod.GET) //download csv file with all user info
     public void downloadCSV(HttpServletResponse response) throws IOException {
 
         String csvFileName = "userlist.csv";
@@ -91,7 +52,7 @@ public class UserController {
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
                 CsvPreference.STANDARD_PREFERENCE);
 
-        String[] header = {"uid", "name", "age", "telephone", "email", "job", "password"};
+        String[] header = {"uid", "name", "age", "telephone", "email", "job", "password", "time"};
 
         csvWriter.writeHeader(header);
 
@@ -128,6 +89,8 @@ public class UserController {
 
     @PostMapping()//modify or create
     public User addUser(@RequestBody User user) {
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        user.setTime(timeStamp);
         return userRepository.save(user);
     }
 
